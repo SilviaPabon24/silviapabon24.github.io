@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pagina web de directorio</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h1>Directorio</h1>
+  <ul id="directory-list"></ul>
+
+  <script>
+    // Realizar una solicitud AJAX para obtener los datos del archivo JSON
+    $.ajax({
+      url: 'directorio.json',
+      dataType: 'json',
+      success: function(data) {
+        // Procesar los datos y mostrarlos en la página web
+        var directoryList = $('#directory-list');
+
+        data.forEach(function(person) {
+          var listItem = $('<li>').text(person.name + ' - ' + person.email);
+          directoryList.append(listItem);
+        });
+      },
+      error: function() {
+        alert('No se pudo cargar el archivo JSON.');
+      }
+    });
+  </script>
+</body>
+</html>
